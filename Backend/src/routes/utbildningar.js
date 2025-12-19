@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
+// Temporär info
 const utbildningar = [
   {
     namn: "Förskollärarprogrammet",
@@ -124,6 +125,7 @@ const utbildningar = [
   },
 ];
 
+// 
 router.get("/", (req, res) => {
   console.log("GET /utbildningar endpoint hit!");
   const meritvärde = parseFloat(req.query.meritvärde);

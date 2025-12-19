@@ -1,108 +1,174 @@
 import React, { useState } from "react";
 import MeritCalculator from "../MeritCalc/MeritCalculator";
 import EducationSuggestion from "../EducationSuggestions/EducationSuggestions";
+import type { Course, Grade } from "../../types/merit";
 import "./counter.css";
 
-// Definierar en interface för kurser
+/* CONSTANT */
 
-interface Course {
-  id: number;
-  course: string;
-  point: number;
-  grade: string;
-}
-
-  // Tillstånd (state) för att hantera kursinmatning
+const VALID_POINTS = [50, 100, 150, 200, 300];
+const GRADES: Grade[] = ["A", "B", "C", "D", "E", "F"];
 
 const Counter: React.FC = () => {
-  const [course, setCourse] = useState<string>("");
-  const [point, setPoint] = useState<string>("");
-  const [grade, setGrade] = useState<string>("");
+  // Kurs use states
   const [courses, setCourses] = useState<Course[]>([]);
+  const [name, setName] = useState("");
+  // Default 100
+  const [points, setPoints] = useState<number>(100);
+  // Default E
+  const [grade, setGrade] = useState<Grade>("E");
+  // Default False
+  const [isExtended, setIsExtended] = useState(false);
+  // Default 0
+  const [meritPoints, setMeritPoints] = useState<number>(0);
+
   const [meritValue, setMeritValue] = useState<number | null>(null);
- 
   const [educationSuggestions, setEducationSuggestions] = useState<any[]>([]);
 
-  // Funktion för att lägga till en ny kurs
-
-
+  // Lägg till kurs
   const handleAddCourse = () => {
-
-    // Säkerställ att alla fält är ifyllda
-
-    if (course && point && grade) {
-      const newCourse: Course = {
-        id: Date.now(),
-        course,
-        point: parseInt(point, 10),
-        grade,
-      };
-
-      // Uppdatera listan av kurser och nollställ inputfälten
-
-
-      setCourses((prev) => [...prev, newCourse]);
-      setCourse("");
-      setPoint("");
-      setGrade("");
-    } else {
-      alert("Fyll i alla fält!");
+    // Alert vid tomt namn
+    if (!name.trim()) {
+      alert("Ange kursnamn");
+      return;
     }
+
+    // Skapa ny constant
+    const newCourse: Course = {
+      id: Date.now(),
+      name,
+      points,
+      grade,
+      isExtended,
+      meritPoints,
+    };
+
+    // Lägg till nya kurs
+    setCourses((prev) => [...prev, newCourse]);
+
+    // Reset
+    setName("");
+    setPoints(100);
+    setGrade("E");
+    setIsExtended(false);
+    setMeritPoints(0);
   };
 
-  // Funktion för att ta bort en kurs
-
-
+  // Ta bort kurs
   const deleteCourse = (id: number) => {
-    setCourses((prev) => prev.filter((item) => item.id !== id));
+    setCourses((prev) => prev.filter((c) => c.id !== id));
   };
 
   return (
     <div className="main-container">
       <div className="counter-container">
         <h2>Kurshanterare</h2>
+
+        {/* Lägg till kurs */}
         <div className="input-section">
           <h3>Lägg till ny kurs</h3>
-          <label htmlFor="course">Kurs</label>
-          <input type="text" id="course" value={course} onChange={(e) => setCourse(e.target.value)} />
-          <label htmlFor="point">Poäng</label>
-          <input type="number" id="point" value={point} onChange={(e) => setPoint(e.target.value)} />
 
-          <div className="grade-buttons">
-            <label>Betyg:</label>
-            {["A", "B", "C", "D", "E", "F"].map((g) => (
-              <button  key={g} className={grade === g ? "selected" : ""} onClick={() => setGrade(g)}>
-                {g}
-              </button>
+          <label>Kursnamn</label>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="t.ex. Matematik 4"
+          />
+
+          <label>Poäng</label>
+          <select
+            value={points}
+            onChange={(e) => setPoints(Number(e.target.value))}
+          >
+            {VALID_POINTS.map((p) => (
+              <option key={p} value={p}>
+                {p} p
+              </option>
             ))}
-          </div>
+          </select>
+
+          <label>Betyg</label>
+          <select
+            value={grade}
+            onChange={(e) => setGrade(e.target.value as Grade)}
+          >
+            {GRADES.map((g) => (
+              <option key={g} value={g}>
+                {g}
+              </option>
+            ))}
+          </select>
+
+          <label>Meritpoäng</label>
+          <select
+            value={meritPoints}
+            onChange={(e) => setMeritPoints(Number(e.target.value))}
+          >
+            <option value={0}>Ingen</option>
+            <option value={0.5}>0,5</option>
+            <option value={1.0}>1,0</option>
+            <option value={1.5}>1,5</option>
+          </select>
+
+          <label className="checkbox">
+            <input
+              type="checkbox"
+              checked={isExtended}
+              onChange={(e) => setIsExtended(e.target.checked)}
+            />
+            Utökad kurs
+          </label>
 
           <button className="add-btn" onClick={handleAddCourse}>
             Lägg till kurs
           </button>
         </div>
 
+        {/* Kurslista */}
         <div className="course-list">
           <h3>Dina kurser</h3>
-          {courses.length === 0 ? <p>Inga kurser tillagda ännu.</p> : (
+          {courses.length === 0 ? (
+            <p>Inga kurser tillagda ännu.</p>
+          ) : (
             <ul>
-              {courses.map((item) => (
-                <li key={item.id} className="course-item">
+              {courses.map((course) => (
+                <li key={course.id} className="course-item">
                   <span>
-                    <strong>{item.course}</strong> - {item.point} poäng - Betyg: {item.grade}
+                    <strong>{course.name}</strong> – {course.points} p –{" "}
+                    {course.grade}
+                    {course.isExtended && " (Utökad)"}
+                    {course.meritPoints > 0 && ` +${course.meritPoints} merit`}
                   </span>
-                  <button className="delete-btn" onClick={() => deleteCourse(item.id)}>❌</button>
+                  <button
+                    className="delete-btn"
+                    onClick={() => deleteCourse(course.id)}
+                  >
+                    ❌
+                  </button>
                 </li>
               ))}
             </ul>
           )}
         </div>
 
-        <MeritCalculator courses={courses} setMeritValue={setMeritValue} setEducationSuggestions={setEducationSuggestions} />
+        {/* Meritberäkning */}
+        <MeritCalculator
+          courses={courses}
+          setMeritValue={setMeritValue}
+          setEducationSuggestions={setEducationSuggestions}
+        />
       </div>
 
+      {/* Meritvärde och utbildningsförslag */}
       <div className="suggestions-container">
-        <EducationSuggestion meritValue={meritValue} suggestions={educationSuggestions} />
+        {meritValue !== null && (
+          <h3>Ditt meritvärde: {meritValue.toFixed(2)}</h3>
+        )}
+        <EducationSuggestion
+          meritValue={meritValue}
+          suggestions={educationSuggestions}
+        />
       </div>
     </div>
   );
