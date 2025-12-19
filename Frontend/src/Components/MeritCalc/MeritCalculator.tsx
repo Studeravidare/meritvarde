@@ -21,7 +21,12 @@ interface MeritCalculatorProps {
 // Mappning av betyg till poäng enligt det svenska skolsystemet
 
 const gradeToPoints: Record<string, number> = {
-  A: 20, B: 17.5, C: 15, D: 12.5, E: 10, F: 0,
+  A: 20,
+  B: 17.5,
+  C: 15,
+  D: 12.5,
+  E: 10,
+  F: 0,
 };
 
 // Funktion för att räkna ut meritvärdet baserat på kurserna
@@ -47,7 +52,9 @@ const calculateMeritValue = (courses: Course[]): number => {
 
 const fetchEducationSuggestions = async (meritValue: number) => {
   try {
-    const response = await fetch(`http://localhost:3000/utbildningar?meritvärde=${meritValue}`);
+    const response = await fetch(
+      `http://localhost:3000/utbildningar?meritvärde=${meritValue}`
+    );
     if (!response.ok) throw new Error("Kunde inte hämta utbildningar.");
     return await response.json();
   } catch (error) {
@@ -56,11 +63,15 @@ const fetchEducationSuggestions = async (meritValue: number) => {
   }
 };
 
-const MeritCalculator: React.FC<MeritCalculatorProps> = ({ courses, setMeritValue, setEducationSuggestions }) => {
+const MeritCalculator: React.FC<MeritCalculatorProps> = ({
+  courses,
+  setMeritValue,
+  setEducationSuggestions,
+}) => {
   const [loading, setLoading] = useState(false);
   const [localMeritValue, setLocalMeritValue] = useState<number | null>(null);
 
-    // Hanterar knapptryck för att beräkna meritvärde
+  // Hanterar knapptryck för att beräkna meritvärde
 
   const handleCalculate = async () => {
     setLoading(true);
@@ -74,15 +85,22 @@ const MeritCalculator: React.FC<MeritCalculatorProps> = ({ courses, setMeritValu
 
   return (
     <div className="merit-container">
+      {/* Knapp för att starta beräkning av meritvärde */}
 
-            {/* Knapp för att starta beräkning av meritvärde */}
-
-      <button className="beraknaBtn" onClick={handleCalculate} disabled={loading}>{loading ? "Laddar..." : "Beräkna meritvärde"}</button>
-      <h3>{localMeritValue !== null ? `Ditt meritvärde: ${localMeritValue.toFixed(2)}` : ""}</h3>
+      <button
+        className="beraknaBtn"
+        onClick={handleCalculate}
+        disabled={loading}
+      >
+        {loading ? "Laddar..." : "Beräkna meritvärde"}
+      </button>
+      <h3>
+        {localMeritValue !== null
+          ? `Ditt meritvärde: ${localMeritValue.toFixed(2)}`
+          : ""}
+      </h3>
     </div>
   );
 };
 
 export default MeritCalculator;
-
-
