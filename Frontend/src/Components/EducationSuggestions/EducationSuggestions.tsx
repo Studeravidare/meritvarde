@@ -1,51 +1,33 @@
 import React from "react";
+import "./EducationSuggestions.css";
 
-/* Interfaces */
-interface Suggestion {
-  namn: string;
-  minMerit: number;
-  beskrivning: string;
-}
-
-interface Props {
+interface EducationSuggestionsProps {
   meritValue: number | null;
-  suggestions: Suggestion[];
+  suggestions: any[];
 }
 
-// Funktionen för suggestion
-const EducationSuggestion: React.FC<Props> = ({ meritValue, suggestions }) => {
-  // Om ingen passar
-  if (!meritValue || !suggestions || suggestions.length === 0) {
-    return <p>Inga utbildningar hittades</p>;
-  }
+const EducationSuggestions: React.FC<EducationSuggestionsProps> = ({
+  meritValue,
+  suggestions,
+}) => {
+  if (!meritValue) return <p>Lägg till kurser och beräkna meritvärde.</p>;
 
-  // Beräkna intervallet för meritvärdet (2 poäng steg)
-  const lowerStep = Math.floor(meritValue / 2) * 2;
-  const upperStep = lowerStep + 2;
-
-  // Filtrera utbildningar som ligger inom intervallet
-  const filtered = suggestions.filter(
-    (u) => u.minMerit >= lowerStep && u.minMerit <= upperStep
-  );
-
-  if (filtered.length === 0) return <p>Inga utbildningar i ditt intervall</p>;
-
-  /* Utskrift */
   return (
-    <div>
-      <h3>
-        Utbildningar för meritvärde {meritValue.toFixed(2)} (steg {lowerStep}-
-        {upperStep})
-      </h3>
-      <ul>
-        {filtered.map((u, i) => (
-          <li key={i}>
-            <strong>{u.namn}</strong> – {u.beskrivning}
-          </li>
-        ))}
-      </ul>
+    <div className="education-suggestions">
+      <h3>Utbildningsförslag</h3>
+      {suggestions.length === 0 ? (
+        <p>Inga utbildningar matchar ditt meritvärde.</p>
+      ) : (
+        <ul>
+          {suggestions.map((s, i) => (
+            <li key={i}>
+              <strong>{s.namn}</strong>: {s.beskrivning}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
 
-export default EducationSuggestion;
+export default EducationSuggestions;

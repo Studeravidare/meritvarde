@@ -1,8 +1,6 @@
 #root {
   max-width: 100%;
   width: 100%;
-  /* padding: 2rem; Valfritt, beroende på om du vill ha padding */
-  text-align: center; /* Behåll detta om du vill centrera texten */
 }
 
 
@@ -12,9 +10,11 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -23,6 +23,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
