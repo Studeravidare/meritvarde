@@ -7,8 +7,12 @@ import { calculateMeritValue } from "../MeritCalc/calculateMerit";
 import "./counter.css";
 
 const Counter: React.FC = () => {
+  // useStates
+  // Kurser
   const [courses, setCourses] = useState<Course[]>([]);
+  // Meritvärde
   const [meritValue, setMeritValue] = useState<number | null>(null);
+  // Utbildningsförslag
   const [educationSuggestions, setEducationSuggestions] = useState<any[]>([]);
 
   // Ta bort kurs
@@ -23,15 +27,34 @@ const Counter: React.FC = () => {
       return;
     }
 
+    // Funktion för uträkning
     const merit = calculateMeritValue(courses);
+    // Spara merit
     setMeritValue(merit);
 
+    // Töm tidigare förslag
+    setEducationSuggestions([]);
+
     try {
+      // Fetch (använder sig av proxy) vite.config.ts
       const res = await fetch(`/utbildningar?meritvärde=${merit.toFixed(2)}`);
+      // Vid fel
       if (!res.ok) throw new Error("Misslyckades att hämta utbildningar");
-      const suggestions = await res.json();
-      setEducationSuggestions(suggestions);
+      // Spara alla utbildningsförslag
+      const allSuggestions = await res.json();
+
+      // Beräkna range för utbildningsförslag
+      // t.ex. meritvärde 14 → bara minMerit = 14
+      const roundedMerit = Math.floor(merit / 2) * 2; // Hitta merit närmaste jämna tal nedåt
+      // Filtrera utbildningsförslagen
+      const filteredSuggestions = allSuggestions.filter(
+        (utb: any) => utb.minMerit === roundedMerit
+      );
+
+      // Spara filtrerade förslag
+      setEducationSuggestions(filteredSuggestions);
     } catch (err) {
+      // Error catch
       console.error(err);
       setEducationSuggestions([]);
     }

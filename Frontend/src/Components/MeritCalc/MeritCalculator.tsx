@@ -2,7 +2,7 @@ import React from "react";
 import type { Course } from "../../types/merit";
 import "./MeritCalculator.css";
 
-// Konstant för poäng
+// Betyg till poäng konstanter
 const GRADE_TO_POINTS: Record<string, number> = {
   A: 20,
   B: 17.5,
@@ -12,7 +12,9 @@ const GRADE_TO_POINTS: Record<string, number> = {
   F: 0,
 };
 
+// Meritpoäng max
 const MAX_MERIT_POINTS = 2.5;
+// Meritvärde max
 const MAX_TOTAL = 22.5;
 
 export const calculateMeritValue = (courses: Course[]): number => {

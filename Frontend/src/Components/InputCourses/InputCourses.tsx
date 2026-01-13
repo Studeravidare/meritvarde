@@ -2,27 +2,36 @@ import React, { useState } from "react";
 import type { Course, Grade } from "../../types/merit";
 import "./InputCourses.css";
 
+// Interface för course props
 interface InputCoursesProps {
+  /* Listan med kurser som ska visas av typen "Course" */
   courses: Course[];
+  /* Funktion för att uppdatera kurslistan (Just nu setCourses från föräldern) */
   setCourses: React.Dispatch<React.SetStateAction<Course[]>>;
 }
 
+// Poängval för kurser
 const VALID_POINTS = [50, 100, 150, 200, 300];
+// Betygval för kurser
 const GRADES: Grade[] = ["A", "B", "C", "D", "E", "F"];
 
 const InputCourses: React.FC<InputCoursesProps> = ({ courses, setCourses }) => {
+  // Usestates för inputs
   const [name, setName] = useState("");
   const [points, setPoints] = useState<number>(100);
   const [grade, setGrade] = useState<Grade>("E");
   const [isExtended, setIsExtended] = useState(false);
   const [meritPoints, setMeritPoints] = useState(0);
 
+  // Lägg till kurs
   const handleAdd = () => {
+    // Om name är tomt
     if (!name.trim()) {
       alert("Ange kursnamn");
       return;
     }
 
+    // Skapa kurs och lägg till i listan
     const newCourse: Course = {
       id: Date.now(),
       name,
@@ -34,7 +43,7 @@ const InputCourses: React.FC<InputCoursesProps> = ({ courses, setCourses }) => {
 
     setCourses([...courses, newCourse]);
 
-    // Reset
+    // Töm inputs
     setName("");
     setPoints(100);
     setGrade("E");
@@ -43,9 +52,11 @@ const InputCourses: React.FC<InputCoursesProps> = ({ courses, setCourses }) => {
   };
 
   return (
+    // Utskrift av inputs
     <div className="input-courses">
       <h3>Lägg till ny kurs</h3>
 
+      {/* Namn */}
       <input
         type="text"
         placeholder="Kursnamn t.ex. Matematik 4"
@@ -53,25 +64,28 @@ const InputCourses: React.FC<InputCoursesProps> = ({ courses, setCourses }) => {
         onChange={(e) => setName(e.target.value)}
       />
 
+      {/* Poäng */}
       <select
         value={points}
         onChange={(e) => setPoints(Number(e.target.value))}
       >
-        {VALID_POINTS.map((p) => (
-          <option key={p} value={p}>
-            {p} p
+        {VALID_POINTS.map((points) => (
+          <option key={points} value={points}>
+            {points}p
           </option>
         ))}
       </select>
 
+      {/* Betyg */}
       <select value={grade} onChange={(e) => setGrade(e.target.value as Grade)}>
-        {GRADES.map((g) => (
-          <option key={g} value={g}>
-            {g}
+        {GRADES.map((grade) => (
+          <option key={grade} value={grade}>
+            {grade}
           </option>
         ))}
       </select>
 
+      {/* Eventuell merit */}
       <select
         value={meritPoints}
         onChange={(e) => setMeritPoints(Number(e.target.value))}
@@ -82,6 +96,7 @@ const InputCourses: React.FC<InputCoursesProps> = ({ courses, setCourses }) => {
         <option value={1.5}>1,5</option>
       </select>
 
+      {/* Utökad kurs checkbox */}
       <label>
         <input
           type="checkbox"
@@ -91,6 +106,7 @@ const InputCourses: React.FC<InputCoursesProps> = ({ courses, setCourses }) => {
         Utökad kurs
       </label>
 
+      {/* Knapp för att lägga till */}
       <button onClick={handleAdd}>Lägg till kurs</button>
     </div>
   );

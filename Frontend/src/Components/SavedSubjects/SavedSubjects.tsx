@@ -13,12 +13,11 @@ const SavedSubjects: React.FC<SavedSubjectsProps> = ({
   courses,
   deleteCourse,
   calculateMerit,
-  meritValue,
 }) => {
   const totalPoints = courses.reduce((sum, c) => sum + c.points, 0);
 
   return (
-    <div className="saved-subjects">
+    <div className="saved-courses">
       <h3>Sparade kurser</h3>
       <p>Totala poäng: {totalPoints}</p>
 
@@ -26,22 +25,24 @@ const SavedSubjects: React.FC<SavedSubjectsProps> = ({
         <p>Inga kurser tillagda ännu.</p>
       ) : (
         <ul>
-          {courses.map((c) => (
-            <li key={c.id}>
+          {courses.map((course) => (
+            <li key={course.id} className="saved-course-item">
               <span>
-                <strong>{c.name}</strong> – {c.points} p – {c.grade}
-                {c.isExtended && " (Utökad)"}
-                {c.meritPoints > 0 && ` +${c.meritPoints} merit`}
+                <strong>{course.name}</strong> – {course.points} p –{" "}
+                {course.grade}
+                {course.isExtended && " (Utökad)"}
+                {course.meritPoints > 0 && ` +${course.meritPoints} merit`}
               </span>
-              <button onClick={() => deleteCourse(c.id)}>❌</button>
+              <button onClick={() => deleteCourse(course.id)}>❌</button>
             </li>
           ))}
         </ul>
       )}
 
-      <button onClick={calculateMerit}>Beräkna meritvärde</button>
-
-      {meritValue !== null && <p>Ditt meritvärde: {meritValue.toFixed(2)}</p>}
+      {/* Knapp för att beräkna meritvärde */}
+      <button className="beraknaBtn" onClick={calculateMerit}>
+        Beräkna meritvärde
+      </button>
     </div>
   );
 };

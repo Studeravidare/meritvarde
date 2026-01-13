@@ -1,15 +1,16 @@
 import React from "react";
 import "./EducationSuggestions.css";
 
-interface EducationSuggestionsProps {
+// Interface för att ge typ till props
+// Typescript vänligt
+interface Props {
   meritValue: number | null;
   suggestions: any[];
 }
 
-const EducationSuggestions: React.FC<EducationSuggestionsProps> = ({
-  meritValue,
-  suggestions,
-}) => {
+// Utskrift av educations (kallas i counter)
+const EducationSuggestions: React.FC<Props> = ({ meritValue, suggestions }) => {
+  // Om meritvärde är tomt
   if (!meritValue) return <p>Lägg till kurser och beräkna meritvärde.</p>;
 
   return (
@@ -19,6 +20,7 @@ const EducationSuggestions: React.FC<EducationSuggestionsProps> = ({
         <p>Inga utbildningar matchar ditt meritvärde.</p>
       ) : (
         <ul>
+          {/* Utskrift av utbildningsförslag */}
           {suggestions.map((s, i) => (
             <li key={i}>
               <strong>{s.namn}</strong>: {s.beskrivning}
