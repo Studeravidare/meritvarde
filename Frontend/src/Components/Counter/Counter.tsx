@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InputCourses from "../InputCourses/InputCourses";
 import SavedSubjects from "../SavedSubjects/SavedSubjects";
 import EducationSuggestions from "../EducationSuggestions/EducationSuggestions";
@@ -7,12 +7,9 @@ import { calculateMeritValue } from "../MeritCalc/calculateMerit";
 import "./counter.css";
 
 const Counter: React.FC = () => {
-  // useStates
-  // Kurser
+  // useStates för kurser, merit och utbildningsförslag
   const [courses, setCourses] = useState<Course[]>([]);
-  // Meritvärde
   const [meritValue, setMeritValue] = useState<number | null>(null);
-  // Utbildningsförslag
   const [educationSuggestions, setEducationSuggestions] = useState<any[]>([]);
 
   // Ta bort kurs
@@ -20,64 +17,60 @@ const Counter: React.FC = () => {
     setCourses((prev) => prev.filter((c) => c.id !== id));
   };
 
-  // Beräkna meritvärde
-  const handleCalculate = async () => {
+  // useEffect för "courses"
+  useEffect(() => {
+    // Om kurser är tomt, töm
     if (courses.length === 0) {
-      alert("Lägg till minst en kurs först!");
+      setMeritValue(null);
+      setEducationSuggestions([]);
       return;
     }
 
-    // Funktion för uträkning
+    // Ta fram nya merit
     const merit = calculateMeritValue(courses);
     // Spara merit
     setMeritValue(merit);
 
-    // Töm tidigare förslag
-    setEducationSuggestions([]);
+    // Fetch för utbildningar
+    const fetchSuggestions = async () => {
+      try {
+        const res = await fetch(`/utbildningar?meritvärde=${merit.toFixed(2)}`);
+        // Vid fel
+        if (!res.ok) throw new Error("Fetch failed");
 
-    try {
-      // Fetch (använder sig av proxy) vite.config.ts
-      const res = await fetch(`/utbildningar?meritvärde=${merit.toFixed(2)}`);
-      // Vid fel
-      if (!res.ok) throw new Error("Misslyckades att hämta utbildningar");
-      // Spara alla utbildningsförslag
-      const allSuggestions = await res.json();
+        const all = await res.json();
 
-      // Beräkna range för utbildningsförslag
-      // t.ex. meritvärde 14 → bara minMerit = 14
-      const roundedMerit = Math.floor(merit / 2) * 2; // Hitta merit närmaste jämna tal nedåt
-      // Filtrera utbildningsförslagen
-      const filteredSuggestions = allSuggestions.filter(
-        (utb: any) => utb.minMerit === roundedMerit
-      );
+        // Ta fram range
+        const range = Math.min(20, Math.floor(merit / 2) * 2);
+        // Ta fram filtrerad
+        const filtered = all.filter((u: any) => u.minMerit === range);
+        // Spara
+        setEducationSuggestions(filtered);
+      } catch (err) {
+        // Vid error, ge error i konsol och töm förslag
+        console.error(err);
+        setEducationSuggestions([]);
+      }
+    };
 
-      // Spara filtrerade förslag
-      setEducationSuggestions(filteredSuggestions);
-    } catch (err) {
-      // Error catch
-      console.error(err);
-      setEducationSuggestions([]);
-    }
-  };
+    fetchSuggestions();
+  }, [courses]); // Runs when courses changes
 
   return (
     <div className="counter-columns">
-      {/* Kolumn 1: Input */}
+      {/* Kolumn 1, inputs */}
       <div className="input-column">
         <InputCourses courses={courses} setCourses={setCourses} />
       </div>
-
-      {/* Kolumn 2: Sparade kurser + knapp */}
+      {/* Kolumn 2, kurser och merit */}
       <div className="saved-courses-column">
         <SavedSubjects
           courses={courses}
           deleteCourse={deleteCourse}
-          calculateMerit={handleCalculate}
           meritValue={meritValue}
         />
       </div>
-
-      {/* Kolumn 3: Utbildningsförslag */}
+      {/* Kolumn 3, utbildingsförslag */}
       <div className="education-column">
         <EducationSuggestions
           meritValue={meritValue}

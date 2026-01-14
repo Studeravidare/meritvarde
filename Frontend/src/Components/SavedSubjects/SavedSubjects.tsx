@@ -5,21 +5,25 @@ import "./SavedSubjects.css";
 interface SavedSubjectsProps {
   courses: Course[];
   deleteCourse: (id: number) => void;
-  calculateMerit: () => void;
   meritValue: number | null;
 }
 
 const SavedSubjects: React.FC<SavedSubjectsProps> = ({
   courses,
   deleteCourse,
-  calculateMerit,
+  meritValue,
 }) => {
   const totalPoints = courses.reduce((sum, c) => sum + c.points, 0);
 
   return (
     <div className="saved-courses">
       <h3>Sparade kurser</h3>
+
       <p>Totala poäng: {totalPoints}</p>
+
+      {meritValue !== null && (
+        <p className="merit-value">Meritvärde: {meritValue.toFixed(2)}</p>
+      )}
 
       {courses.length === 0 ? (
         <p>Inga kurser tillagda ännu.</p>
@@ -38,11 +42,6 @@ const SavedSubjects: React.FC<SavedSubjectsProps> = ({
           ))}
         </ul>
       )}
-
-      {/* Knapp för att beräkna meritvärde */}
-      <button className="beraknaBtn" onClick={calculateMerit}>
-        Beräkna meritvärde
-      </button>
     </div>
   );
 };
