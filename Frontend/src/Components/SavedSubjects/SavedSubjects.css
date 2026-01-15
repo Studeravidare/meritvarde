@@ -22,12 +22,12 @@
 .summary {
     text-align: center;
     font-style: italic;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.5rem;
 }
 
 .summary p {
     margin: 0.15rem 0;
-    font-size: 0.95rem;
+    font-size: 1rem;
 }
 
 /* ===== Progressbar ===== */
@@ -35,9 +35,9 @@
     width: 100%;
     height: 10px;
     background: #d1d5db;
-    border-radius: 999px;
+    border-radius: 20px;
     overflow: hidden;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.5rem;
 }
 
 .progress-bar {
@@ -51,7 +51,7 @@
 .saved-courses ul {
     list-style: none;
     padding: 0;
-    margin-top: 0.4rem;
+    margin-top: 0.5rem;
 
     flex: 1;
     overflow-y: auto;
@@ -81,14 +81,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 0.6rem;
-
-    padding: 0.8rem 1rem;
+    gap: 0.5rem;
+    padding: 1rem 1rem;
     background: #fdfdfd;
     border-radius: 10px;
     border: 1px solid #d0d5dd;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    transition: transform 0.12s ease, box-shadow 0.12s ease;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
 .saved-course-item:hover {
@@ -104,7 +103,7 @@
 }
 
 .course-name {
-    font-weight: 500;
+    font-weight: 600;
     font-size: 1.2rem;
 }
 
@@ -112,19 +111,19 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: #555;
 }
 
 .course-meta span {
     background: #eee;
-    padding: 0.2rem 0.55rem;
+    padding: 0.2rem 0.6rem;
     border-radius: 6px;
 }
 
 /* ===== Färgkodade betyg ===== */
 .course-grade {
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .grade-A {
@@ -151,17 +150,22 @@
     color: #494949;
 }
 
-/* Chips */
+/* Kursinfo text */
+
+.course-points {
+    font-weight: 600;
+}
+
 .course-extended {
     background: #dbeafe;
     color: #1e40af;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .course-merit {
     background: #fef3c7;
     color: #92400e;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 /* Ta bort */

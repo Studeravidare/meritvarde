@@ -18,13 +18,13 @@
 .input-courses {
     display: flex;
     flex-direction: column;
-    gap: 0.9rem;
+    gap: 1.2rem;
 }
 
 /* ===== Rows ===== */
 .row {
     display: grid;
-    gap: 0.6rem;
+    gap: 0.5rem;
 }
 
 .top-row {
@@ -39,8 +39,8 @@
 /* ===== Inputs ===== */
 input,
 select {
-    padding: 0.55rem 0.7rem;
-    font-size: 0.95rem;
+    padding: 0.7rem 0.7rem;
+    font-size: 1rem;
     border-radius: 8px;
     border: 1px solid #d0d5dd;
     background: #fafafa;
@@ -57,7 +57,7 @@ select:focus {
 .extended {
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.5rem;
     font-size: 0.9rem;
     white-space: nowrap;
     cursor: pointer;
@@ -70,9 +70,8 @@ select:focus {
 
 /* ===== Button ===== */
 button {
-    margin-top: 0.4rem;
     padding: 0.7rem;
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 600;
     color: #fff;
     background: #FFB71B;
@@ -83,7 +82,7 @@ button {
 
 button:hover {
     transform: translateY(-1px);
-    box-shadow: 0 8px 20px rgb(255, 183, 27, 0.2);
+    box-shadow: 0 8px 20px rgb(255, 183, 27, 0.1);
 }
 
 button:active {

@@ -52,7 +52,7 @@ const SavedSubjects: React.FC<SavedSubjectsProps> = ({
               <div className="course-info">
                 <strong className="course-name">{course.name}</strong>
                 <div className="course-meta">
-                  <span>{course.points}p</span>
+                  <span className="course-points">{course.points}p</span>
                   <span className={`course-grade grade-${course.grade}`}>
                     {course.grade}
                   </span>
