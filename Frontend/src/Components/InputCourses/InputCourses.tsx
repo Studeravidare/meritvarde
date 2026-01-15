@@ -53,61 +53,67 @@ const InputCourses: React.FC<InputCoursesProps> = ({ courses, setCourses }) => {
 
   return (
     // Utskrift av inputs
-    <div className="input-courses">
+    <div className="input-container">
       <h3>Lägg till ny kurs</h3>
 
-      {/* Namn */}
-      <input
-        type="text"
-        placeholder="Kursnamn t.ex. Matematik 4"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
+      <div className="input-courses">
+        {/* Rad 1: Kursnamn + utökad */}
+        <div className="row top-row">
+          <input
+            type="text"
+            placeholder="Kursnamn t.ex. Matematik 4"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
 
-      {/* Poäng */}
-      <select
-        value={points}
-        onChange={(e) => setPoints(Number(e.target.value))}
-      >
-        {VALID_POINTS.map((points) => (
-          <option key={points} value={points}>
-            {points}p
-          </option>
-        ))}
-      </select>
+          <label className="extended">
+            <input
+              type="checkbox"
+              checked={isExtended}
+              onChange={(e) => setIsExtended(e.target.checked)}
+            />
+            Utökad kurs
+          </label>
+        </div>
 
-      {/* Betyg */}
-      <select value={grade} onChange={(e) => setGrade(e.target.value as Grade)}>
-        {GRADES.map((grade) => (
-          <option key={grade} value={grade}>
-            {grade}
-          </option>
-        ))}
-      </select>
+        {/* Rad 2: Poäng / Betyg / Merit */}
+        <div className="row select-row">
+          <select
+            value={points}
+            onChange={(e) => setPoints(Number(e.target.value))}
+          >
+            {VALID_POINTS.map((points) => (
+              <option key={points} value={points}>
+                {points}p
+              </option>
+            ))}
+          </select>
 
-      {/* Eventuell merit */}
-      <select
-        value={meritPoints}
-        onChange={(e) => setMeritPoints(Number(e.target.value))}
-      >
-        <option value={0}>Ingen merit</option>
-        <option value={0.5}>0,5</option>
-        <option value={1}>1</option>
-        <option value={1.5}>1,5</option>
-      </select>
+          <select
+            value={grade}
+            onChange={(e) => setGrade(e.target.value as Grade)}
+          >
+            {GRADES.map((grade) => (
+              <option key={grade} value={grade}>
+                {grade}
+              </option>
+            ))}
+          </select>
 
-      {/* Utökad kurs checkbox */}
-      <label>
-        <input
-          type="checkbox"
-          checked={isExtended}
-          onChange={(e) => setIsExtended(e.target.checked)}
-        />
-        Utökad kurs
-      </label>
+          <select
+            value={meritPoints}
+            onChange={(e) => setMeritPoints(Number(e.target.value))}
+          >
+            <option value={0}>Ingen merit</option>
+            <option value={0.5}>0,5</option>
+            <option value={1}>1</option>
+            <option value={1.5}>1,5</option>
+          </select>
+        </div>
 
-      {/* Knapp för att lägga till */}
-      <button onClick={handleAdd}>Lägg till kurs</button>
+        {/* Knapp */}
+        <button onClick={handleAdd}>Lägg till kurs</button>
+      </div>
     </div>
   );
 };
