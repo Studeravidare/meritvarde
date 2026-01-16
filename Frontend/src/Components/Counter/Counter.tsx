@@ -26,10 +26,22 @@ const Counter: React.FC = () => {
       return;
     }
 
+    // Räkna ENDAST poäng som inte är utökade (2400-regeln)
+    const qualifyingPoints = courses.reduce(
+      (sum, c) => sum + (c.isExtended ? 0 : c.points),
+      0
+    );
+
     // Ta fram nya merit
     const merit = calculateMeritValue(courses);
     // Spara merit
     setMeritValue(merit);
+
+    // Visa inga utbildningsförslag före 2400p
+    if (qualifyingPoints < 2400) {
+      setEducationSuggestions([]);
+      return;
+    }
 
     // Fetch för utbildningar
     const fetchSuggestions = async () => {
@@ -54,7 +66,13 @@ const Counter: React.FC = () => {
     };
 
     fetchSuggestions();
-  }, [courses]); // Runs when courses changes
+  }, [courses]); // Körs när courses ändras
+
+  // Skickas till EducationSuggestions (samma 2400-logik)
+  const qualifyingPoints = courses.reduce(
+    (sum, c) => sum + (c.isExtended ? 0 : c.points),
+    0
+  );
 
   return (
     <div className="counter-columns">
@@ -62,6 +80,7 @@ const Counter: React.FC = () => {
       <div className="input-column">
         <InputCourses courses={courses} setCourses={setCourses} />
       </div>
+
       {/* Kolumn 2, kurser och merit */}
       <div className="saved-courses-column">
         <SavedSubjects
@@ -70,11 +89,13 @@ const Counter: React.FC = () => {
           meritValue={meritValue}
         />
       </div>
+
       {/* Kolumn 3, utbildingsförslag */}
       <div className="education-column">
         <EducationSuggestions
           meritValue={meritValue}
           suggestions={educationSuggestions}
+          qualifyingPoints={qualifyingPoints}
         />
       </div>
     </div>

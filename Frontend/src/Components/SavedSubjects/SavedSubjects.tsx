@@ -18,12 +18,16 @@ const SavedSubjects: React.FC<SavedSubjectsProps> = ({
   deleteCourse,
   meritValue,
 }) => {
-  // Beräkna antal poäng för utskrift
-  const totalPoints = courses.reduce((sum, c) => sum + c.points, 0);
+  // Beräkna ENDAST poäng som räknas mot 2400 (ej utökade)
+  const totalPoints = courses.reduce(
+    (sum, c) => sum + (c.isExtended ? 0 : c.points),
+    0
+  );
 
   return (
     <div className="saved-courses">
       <h3>Sparade kurser</h3>
+
       {/* Utskrift av poäng */}
       <div className="summary">
         <p>

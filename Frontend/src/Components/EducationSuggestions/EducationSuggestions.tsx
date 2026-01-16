@@ -6,16 +6,25 @@ import "./EducationSuggestions.css";
 interface Props {
   meritValue: number | null;
   suggestions: any[];
+  qualifyingPoints: number;
 }
 
 // Utskrift av educations (kallas i counter)
-const EducationSuggestions: React.FC<Props> = ({ meritValue, suggestions }) => {
+const EducationSuggestions: React.FC<Props> = ({
+  meritValue,
+  suggestions,
+  qualifyingPoints,
+}) => {
   return (
     <div className="education-suggestions">
       <h3>Utbildningsförslag</h3>
 
       {meritValue === null ? (
         <p className="empty-text">Lägg till kurser och beräkna meritvärde.</p>
+      ) : qualifyingPoints < 2400 ? (
+        <p className="empty-text">
+          Du behöver minst 2400 gymnasiepoäng för att se utbildningsförslag.
+        </p>
       ) : suggestions.length === 0 ? (
         <p className="empty-text">Inga utbildningar matchar ditt meritvärde.</p>
       ) : (
