@@ -1,23 +1,12 @@
-import Header from './Components/Header/Header'
-import './App.css'
-import Footer from './Components/Footer/Footer'
-import Counter from './Components/Counter/Counter'
-
+import Counter from "./Components/Counter/Counter";
+import "./App.css";
 
 function App() {
-
-
   return (
     <>
-    
-    
-    <Header/>
-    <Counter/>
-    <Footer/>
-
+      <Counter />
     </>
-      
-  )
+  );
 }
 
-export default App
+export default App;

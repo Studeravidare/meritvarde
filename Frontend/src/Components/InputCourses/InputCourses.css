@@ -1,0 +1,100 @@
+.input-container {
+    max-width: 640px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #eee;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px #bbb;
+}
+
+.input-container h3 {
+    margin-bottom: 1.2rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* ===== Wrapper ===== */
+.input-courses {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+/* ===== Rows ===== */
+.row {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.top-row {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+}
+
+.select-row {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* ===== Inputs ===== */
+input,
+select {
+    padding: 0.7rem 0.7rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #d0d5dd;
+    background: #fafafa;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #035C67;
+    box-shadow: 0 0 0 3px rgb(3, 92, 103, 0.2);
+}
+
+/* ===== Checkbox ===== */
+.extended {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.extended input {
+    width: 16px;
+    height: 16px;
+}
+
+/* ===== Button ===== */
+button {
+    padding: 0.7rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    background: #FFB71B;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgb(255, 183, 27, 0.1);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 600px) {
+
+    .top-row,
+    .select-row {
+        grid-template-columns: 1fr;
+    }
+}

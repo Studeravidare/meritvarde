@@ -1,126 +1,18 @@
-.main-container {
+.counter-columns {
   display: flex;
-  justify-content: space-evenly;
   gap: 20px;
-  align-items: flex-start;
+  padding: 16px;
 }
 
-.counter-container,
-.suggestions-container {
-  width: 600px;
-  padding: 20px;
-  border-radius: 10px;
+.input-column,
+.saved-courses-column,
+.education-column {
+  flex: 1;
 }
 
-
-
-.counter-container {
-  width: 400px;
-  text-align: center;
-  margin: 40px 0; 
-  padding: 20px;
-  border-radius: 10px;
-  background-color: #f9f9f9;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-h2, h3 {
-  text-align: center;
-}
-
-.input-section {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 10px;
-}
-
-input {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: white;
-  color: black;
-}
-
-.grade-buttons {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  margin: 10px 0;
-  background-color: white;
-  
-}
-.selected{
-  background-color:  #003d42;
-  border: yellow;
-}
-
-.grade-btn {
-  padding: 8px 12px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: gold;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.grade-btn.selected {
-  background-color: gold;
-  border-color: goldenrod;
-}
-
-.add-btn {
-  background-color: gold;
-  color: black;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.add-btn:hover {
-  background-color: goldenrod;
-}
-
-.course-list ul {
-  list-style: none;
-  padding: 0;
-}
-
-.course-item {
-  display: flex;
-  justify-content: space-between;
-  background-color: white;
-  padding: 10px;
-  margin-bottom: 5px;
-  border-radius: 5px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.delete-btn {
-  background-color: white;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.delete-btn:hover {
-  background-color: darkred;
-}
-@media (max-width: 768px) {
-  .main-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .counter-container,
-  .suggestions-container {
-    width: 90%;
-    max-width: 400px;
-  }
+.merit-result {
+  margin-top: 12px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #333;
 }
