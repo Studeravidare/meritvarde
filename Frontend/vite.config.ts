@@ -3,7 +3,9 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  base: "/Merit.Varde/",
+
+  // relativ sökväg
+  base: "./",
 
   server: {
     proxy: {
@@ -12,5 +14,10 @@ export default defineConfig({
         changeOrigin: true,
       },
     },
+  },
+
+  build: {
+    outDir: "dist",
+    emptyOutDir: true,
   },
 });
