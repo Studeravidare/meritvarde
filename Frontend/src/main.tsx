@@ -4,9 +4,8 @@ import "./index.css";
 import App from "./App";
 
 const container = document.getElementById("ts-app-root");
-
+console.log("React bundle executing");
 if (container) {
-  console.log("Test");
   createRoot(container).render(
     <StrictMode>
       <App />
