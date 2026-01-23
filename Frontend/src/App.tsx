@@ -1,12 +1,12 @@
-// Components/Counter/Counter.tsx
-import React from "react";
+import Counter from "./Components/Counter/Counter";
+import "./App.css";
 
-const Counter = () => {
+function App() {
   return (
-    <div style={{ padding: "50px", backgroundColor: "yellow" }}>
-      Counter Component Mounted!
-    </div>
+    <>
+      <Counter />
+    </>
   );
-};
+}
 
-export default Counter;
+export default App;
