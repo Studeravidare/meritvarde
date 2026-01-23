@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App";
 
-const container = document.getElementById("react-root");
+const container = document.getElementById("ts-app-root");
 
 if (container) {
   createRoot(container).render(
