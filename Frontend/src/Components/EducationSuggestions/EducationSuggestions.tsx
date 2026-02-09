@@ -18,6 +18,7 @@ const EducationSuggestions: React.FC<Props> = ({
   return (
     <div className="education-suggestions">
       <h3>Utbildningsförslag</h3>
+      <h4>Förslag för ditt meritvärde</h4>
 
       {meritValue === null ? (
         <p className="empty-text">Lägg till kurser och beräkna meritvärde.</p>

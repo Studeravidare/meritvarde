@@ -4,6 +4,7 @@ import SavedSubjects from "../SavedSubjects/SavedSubjects";
 import EducationSuggestions from "../EducationSuggestions/EducationSuggestions";
 import type { Course } from "../../types/merit";
 import { calculateMeritValue } from "../MeritCalc/calculateMerit";
+import { educations } from "../../data/educations";
 import "./counter.css";
 
 const Counter: React.FC = () => {
@@ -29,7 +30,7 @@ const Counter: React.FC = () => {
     // Räkna ENDAST poäng som inte är utökade (2400-regeln)
     const qualifyingPoints = courses.reduce(
       (sum, c) => sum + (c.isExtended ? 0 : c.points),
-      0
+      0,
     );
 
     // Ta fram nya merit
@@ -43,35 +44,20 @@ const Counter: React.FC = () => {
       return;
     }
 
-    // Fetch för utbildningar
-    const fetchSuggestions = async () => {
-      try {
-        const res = await fetch(`/utbildningar?meritvärde=${merit.toFixed(2)}`);
-        // Vid fel
-        if (!res.ok) throw new Error("Fetch failed");
+    // Hämta utbildningsförslag (lokal exempeldatat istället för backend)
+    const range = Math.min(20, Math.floor(merit / 2) * 2);
 
-        const all = await res.json();
+    // Filtrera utbildningar baserat på merit-range
+    const filtered = educations.filter((u) => u.minMerit === range);
 
-        // Ta fram range
-        const range = Math.min(20, Math.floor(merit / 2) * 2);
-        // Ta fram filtrerad
-        const filtered = all.filter((u: any) => u.minMerit === range);
-        // Spara
-        setEducationSuggestions(filtered);
-      } catch (err) {
-        // Vid error, ge error i konsol och töm förslag
-        console.error(err);
-        setEducationSuggestions([]);
-      }
-    };
-
-    fetchSuggestions();
+    // Spara
+    setEducationSuggestions(filtered);
   }, [courses]); // Körs när courses ändras
 
   // Skickas till EducationSuggestions (samma 2400-logik)
   const qualifyingPoints = courses.reduce(
     (sum, c) => sum + (c.isExtended ? 0 : c.points),
-    0
+    0,
   );
 
   return (
