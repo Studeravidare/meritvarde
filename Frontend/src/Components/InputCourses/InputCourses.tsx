@@ -61,7 +61,7 @@ const InputCourses: React.FC<InputCoursesProps> = ({ courses, setCourses }) => {
         <div className="row top-row">
           <input
             type="text"
-            placeholder="Kursnamn t.ex. Matematik 4"
+            placeholder="Kursnamn"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
@@ -118,7 +118,13 @@ const InputCourses: React.FC<InputCoursesProps> = ({ courses, setCourses }) => {
         <span>
           Läs mer om hur meritvärde beräknas på vårat{" "}
           <strong>
-            <a href="/meritvarde-och-snittbetyg/">bloggupplägg!</a>
+            <a
+              href="/meritvarde-och-snittbetyg/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              bloggupplägg!
+            </a>
           </strong>
         </span>
       </div>

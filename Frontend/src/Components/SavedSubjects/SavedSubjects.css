@@ -1,13 +1,15 @@
 .saved-courses {
   max-width: 640px;
+  width: 100%;
   height: 640px;
-  margin: 2rem;
+  margin: 2rem auto;
   padding: 1.5rem;
   background: #eee;
   border-radius: 1rem;
   box-shadow: 0 10px 30px #bbb;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 }
 
 /* Rubrik */
@@ -52,10 +54,8 @@
   list-style: none;
   padding: 0;
   margin-top: 0.5rem;
-
   flex: 1;
   overflow-y: auto;
-
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -82,7 +82,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 0.5rem;
-  padding: 1rem 1rem;
+  padding: 1rem;
   background: #fdfdfd;
   border-radius: 10px;
   border: 1px solid #d0d5dd;
@@ -131,39 +131,31 @@
 .grade-A {
   color: #166534;
 }
-
 .grade-B {
   color: #075985;
 }
-
 .grade-C {
   color: #ee8e20;
 }
-
 .grade-D {
   color: #e66f47;
 }
-
 .grade-E {
   color: #991b1b;
 }
-
 .grade-F {
   color: #494949;
 }
 
 /* Kursinfo text */
-
 .course-points {
   font-weight: 600;
 }
-
 .course-extended {
   background: #dbeafe;
   color: #1e40af;
   font-weight: 600;
 }
-
 .course-merit {
   background: #fef3c7;
   color: #92400e;
@@ -196,8 +188,7 @@
 /* iPad */
 @media (min-width: 601px) and (max-width: 1024px) {
   .saved-courses {
-    width: 70%;
-    max-width: none;
+    width: 80%;
     margin: 1.5rem auto;
   }
 }
@@ -206,7 +197,9 @@
 @media (max-width: 600px) {
   .saved-courses {
     width: 100%;
-    margin-left: 0;
-    margin-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }

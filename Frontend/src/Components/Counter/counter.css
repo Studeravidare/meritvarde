@@ -2,13 +2,15 @@
   display: flex;
   gap: 20px;
   padding: 16px;
+  flex-wrap: wrap; /* allow columns to wrap on smaller screens */
+  box-sizing: border-box;
 }
 
 /* Desktop default (3 columns) */
 .input-column,
 .saved-courses-column,
 .education-column {
-  flex: 1;
+  flex: 1 1 300px; /* grow, shrink, min width 300px */
 }
 
 .merit-result {
@@ -20,9 +22,21 @@
 
 /* RESPONSIVE */
 
+/* iPad & below */
 @media (max-width: 1024px) {
   .counter-columns {
-    flex-direction: column;
+    flex-direction: column; /* stack vertically */
     align-items: stretch;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .counter-columns {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }

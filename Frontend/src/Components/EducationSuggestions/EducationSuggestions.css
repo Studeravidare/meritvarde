@@ -1,5 +1,6 @@
 .education-suggestions {
   max-width: 640px;
+  width: 100%;
   height: 640px;
   margin: 2rem auto;
   padding: 1.5rem;
@@ -8,6 +9,7 @@
   box-shadow: 0 10px 30px #bbb;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 }
 
 /* Rubrik */
@@ -64,8 +66,8 @@
 .education-item {
   display: flex;
   flex-direction: column;
-  gap: 0.3xrem;
-  padding: 1rem 1rem;
+  gap: 0.3rem;
+  padding: 1rem;
   background: #fdfdfd;
   border-radius: 10px;
   border: 1px solid #d0d5dd;
@@ -95,7 +97,7 @@
 /* iPad */
 @media (min-width: 601px) and (max-width: 1024px) {
   .education-suggestions {
-    width: 70%;
+    width: 80%;
     max-width: none;
     margin: 1.5rem auto;
   }
@@ -105,7 +107,9 @@
 @media (max-width: 600px) {
   .education-suggestions {
     width: 100%;
-    margin-left: 0;
-    margin-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
