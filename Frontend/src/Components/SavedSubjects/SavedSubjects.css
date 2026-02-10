@@ -1,210 +1,212 @@
 .saved-courses {
-    max-width: 640px;
-    height: 640px;
-    margin: 2rem;
-    padding: 1.5rem;
-    background: #eee;
-    border-radius: 1rem;
-    box-shadow: 0 10px 30px #bbb;
-    display: flex;
-    flex-direction: column;
+  max-width: 640px;
+  height: 640px;
+  margin: 2rem;
+  padding: 1.5rem;
+  background: #eee;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px #bbb;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Rubrik */
 .saved-courses h3 {
-    font-size: 1.3rem;
-    font-weight: 600;
-    text-align: center;
-    margin-bottom: 0.4rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 0.4rem;
 }
 
 /* ===== Summary ===== */
 .summary {
-    text-align: center;
-    font-style: italic;
-    margin-bottom: 0.5rem;
+  text-align: center;
+  font-style: italic;
+  margin-bottom: 0.5rem;
 }
 
 .summary p {
-    margin: 0.15rem 0;
-    font-size: 1rem;
+  margin: 0.15rem 0;
+  font-size: 1rem;
 }
 
 /* ===== Progressbar ===== */
 .progress-wrapper {
-    width: 100%;
-    height: 10px;
-    background: #d1d5db;
-    border-radius: 20px;
-    overflow: hidden;
-    margin-bottom: 0.5rem;
+  width: 100%;
+  height: 10px;
+  background: #d1d5db;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
 }
 
 .progress-bar {
-    height: 100%;
-    background: #035C67;
-    border-radius: 5px;
-    transition: width 0.3s ease;
+  height: 100%;
+  background: #035c67;
+  border-radius: 5px;
+  transition: width 0.3s ease;
 }
 
 /* ===== Scrollbar-lista ===== */
 .saved-courses ul {
-    list-style: none;
-    padding: 0;
-    margin-top: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin-top: 0.5rem;
 
-    flex: 1;
-    overflow-y: auto;
+  flex: 1;
+  overflow-y: auto;
 
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 /* Scrollbar */
 .saved-courses ul::-webkit-scrollbar {
-    width: 8px;
+  width: 8px;
 }
 
 .saved-courses ul::-webkit-scrollbar-track {
-    background: #ddd;
-    border-radius: 10px;
+  background: #ddd;
+  border-radius: 10px;
 }
 
 .saved-courses ul::-webkit-scrollbar-thumb {
-    background: #aaa;
-    border-radius: 10px;
+  background: #aaa;
+  border-radius: 10px;
 }
 
 /* ===== Kurskort ===== */
 .saved-course-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 1rem 1rem;
-    background: #fdfdfd;
-    border-radius: 10px;
-    border: 1px solid #d0d5dd;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    transition: transform 0.1s ease, box-shadow 0.1s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 1rem;
+  background: #fdfdfd;
+  border-radius: 10px;
+  border: 1px solid #d0d5dd;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.1s ease;
 }
 
 .saved-course-item:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Kursinfo */
 .course-info {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
 .course-name {
-    font-weight: 600;
-    font-size: 1.2rem;
+  font-weight: 600;
+  font-size: 1.2rem;
 }
 
 .course-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    font-size: 0.8rem;
-    color: #555;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: #555;
 }
 
 .course-meta span {
-    background: #eee;
-    padding: 0.2rem 0.6rem;
-    border-radius: 6px;
+  background: #eee;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
 }
 
 /* ===== Färgkodade betyg ===== */
 .course-grade {
-    font-weight: 600;
+  font-weight: 600;
 }
 
 .grade-A {
-    color: #166534;
+  color: #166534;
 }
 
 .grade-B {
-    color: #075985;
+  color: #075985;
 }
 
 .grade-C {
-    color: #ee8e20;
+  color: #ee8e20;
 }
 
 .grade-D {
-    color: #e66f47;
+  color: #e66f47;
 }
 
 .grade-E {
-    color: #991b1b;
+  color: #991b1b;
 }
 
 .grade-F {
-    color: #494949;
+  color: #494949;
 }
 
 /* Kursinfo text */
 
 .course-points {
-    font-weight: 600;
+  font-weight: 600;
 }
 
 .course-extended {
-    background: #dbeafe;
-    color: #1e40af;
-    font-weight: 600;
+  background: #dbeafe;
+  color: #1e40af;
+  font-weight: 600;
 }
 
 .course-merit {
-    background: #fef3c7;
-    color: #92400e;
-    font-weight: 600;
+  background: #fef3c7;
+  color: #92400e;
+  font-weight: 600;
 }
 
 /* Ta bort */
 .saved-course-item button {
-    background: none;
-    border: none;
-    font-size: 1rem;
-    cursor: pointer;
-    padding: 0.2rem;
-    transition: transform 0.15s ease;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.2rem;
+  transition: transform 0.15s ease;
 }
 
 .saved-course-item button:hover {
-    transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 /* Tom lista */
-.saved-courses>p {
-    text-align: center;
-    font-style: italic;
-    color: #555;
+.saved-courses > p {
+  text-align: center;
+  font-style: italic;
+  color: #555;
 }
 
 /* RESPONSIVE */
 
 /* iPad */
 @media (min-width: 601px) and (max-width: 1024px) {
-    .saved-courses {
-        width: 70%;
-        max-width: none;
-        margin: 1.5rem auto;
-    }
+  .saved-courses {
+    width: 70%;
+    max-width: none;
+    margin: 1.5rem auto;
+  }
 }
 
 /* Mobile */
 @media (max-width: 600px) {
-    .saved-courses {
-        width: 100%;
-        margin-left: 0;
-        margin-right: 0;
-    }
+  .saved-courses {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
