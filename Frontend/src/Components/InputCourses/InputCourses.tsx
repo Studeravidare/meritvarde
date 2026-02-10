@@ -114,12 +114,12 @@ const InputCourses: React.FC<InputCoursesProps> = ({ courses, setCourses }) => {
         {/* Knapp */}
         <button onClick={handleAdd}>Lägg till kurs</button>
       </div>
-      <div className="blogg-redirect">
+      <div className="blog-redirect">
         <span>
           Läs mer om hur meritvärde beräknas på vårat{" "}
-          <a href="https://studeravidare.se/meritvarde-och-snittbetyg/">
-            bloggupplägg!
-          </a>
+          <strong>
+            <a href="/meritvarde-och-snittbetyg/">bloggupplägg!</a>
+          </strong>
         </span>
       </div>
     </div>
