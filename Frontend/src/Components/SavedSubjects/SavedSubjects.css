@@ -189,17 +189,22 @@
     color: #555;
 }
 
-/* ===== Mobile ===== */
+/* RESPONSIVE */
+
+/* iPad */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .saved-courses {
+        width: 70%;
+        max-width: none;
+        margin: 1.5rem auto;
+    }
+}
+
+/* Mobile */
 @media (max-width: 600px) {
     .saved-courses {
-        height: 360px;
-    }
-
-    .course-name {
-        font-size: 0.9rem;
-    }
-
-    .course-meta {
-        font-size: 0.8rem;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
     }
 }
