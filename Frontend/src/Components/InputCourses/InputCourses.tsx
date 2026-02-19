@@ -119,11 +119,11 @@ const InputCourses: React.FC<InputCoursesProps> = ({ courses, setCourses }) => {
           Läs mer om hur meritvärde beräknas på vårat{" "}
           <strong>
             <a
-              href="/meritvarde-och-snittbetyg/"
+              href="https://studeravidare.se/meritvarde-och-snittbetyg/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              bloggupplägg!
+              blogginlägg!
             </a>
           </strong>
         </span>
